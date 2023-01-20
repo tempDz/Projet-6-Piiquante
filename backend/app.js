@@ -10,11 +10,20 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/api/auth/signup', (req, res, next) => {
+app.use('/api/auth/signup', (req, res, next) => {
     console.log(req.body);
-    res.status(201).json({
-        message: 'Objet créé !'
-    });
+    // res.status(201).json({
+    //     message: 'Objet créé !'
+    // });
 });
+
+// app.post('/api/auth/signup', (req, res, next) => {
+//     console.log(req.body);
+//     res.send
+//     {
+//         email: string;
+//         password: string
+//     };
+// });
 
 module.exports = app;
