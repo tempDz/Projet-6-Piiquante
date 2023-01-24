@@ -17,3 +17,4 @@ userSchema.plugin(uniqueValidator);
 
 //Exportation du modèle "user" dans la base de donnée à partir du schéma userSchema
 module.exports = mongoose.model('User', userSchema);
+

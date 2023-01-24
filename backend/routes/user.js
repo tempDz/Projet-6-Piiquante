@@ -5,11 +5,11 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 
 
-router.post('/signup', auth, userCtrl.signup);
-router.post('/login', auth, userCtrl.login);
+router.post('/signup', userCtrl.signup);
+router.post('/login', userCtrl.login);
 
 
-router.post('/', (req, res, next) => {
+router.post('/', auth, (req, res, next) => {
     delete req.body._id;
     const newUser = new userCtrl({
         ...req.body
