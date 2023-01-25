@@ -1,17 +1,10 @@
-
-/*Ces lignes de code importent le module "Sauce" depuis le chemin de fichier "../models/sauces" et importent le module "fs" (file system) de la bibliothèque de noeuds de base. Le module "Sauce" est utilisé pour accéder à la base de données de sauces, tandis que le module "fs" est utilisé pour accéder aux fonctionnalités de système de fichiers de Node.js, comme la lecture et l'écriture de fichiers*/
-
+//1
 // Import de module 'Sauce' depuis le chemin de fichier '../models/sauces'
 const Sauce = require("../models/sauces");
 // Import de module 'fs' (file system) de la bibliothèque de noeuds de base 
 const fs = require("fs");
 
-
-
-
-
-/*Cette fonction permet de créer une nouvelle sauce en récupérant les propriétés 'like' de la sauce depuis la demande, en supprimant l'identifiant et l'identifiant de l'utilisateur de l'objet 'like', puis en créant une nouvelle instance de 'Sauce' avec les propriétés 'like', l'identifiant de l'utilisateur et l'URL de l'image. Enfin, la nouvelle sauce est enregistrée dans la base de données et un message de succès ou une erreur est renvoyée en fonction de l'enregistrement réussi ou non.*/
-
+//2
 // Exporte la fonction 'createSauce' pour la création d'une nouvelle sauce
 exports.createSauce = (req, res, next) => {
     // Récupère les propriétés 'like' de la sauce depuis la demande
@@ -41,9 +34,7 @@ exports.createSauce = (req, res, next) => {
         });
 };
 
-
-/*Cette fonction permet à un utilisateur de donner un like, un dislike ou de supprimer un like/dislike pour une sauce en utilisant l'identifiant de la sauce fourni dans les paramètres de la requête. Si le body de la requête contient 'like' égal à 0, la fonction va chercher la sauce correspondante dans la base de données et vérifier si l'utilisateur a déjà aimé ou disliké cette sauce. Si oui, le nombre de likes/dislikes sera décrémenté et l'utilisateur sera supprimé de la liste des utilisateurs qui ont aimé/disliké. Si le body de la requête contient 'like' égal à 1, le nombre de likes sera incrémenté et l'utilisateur sera ajouté à la liste des utilisateurs*/
-
+//3
 // Exporte la fonction 'giveLikes' pour donner des likes/dislikes à une sauce
 exports.giveLikes = (req, res, next) => {
     // Si le body de la requête contient 'like' égal à 0
@@ -141,9 +132,7 @@ exports.giveLikes = (req, res, next) => {
     }
 };
 
-
-/*Ce code exporte une fonction appelée "getOneSauce" qui permet de récupérer les détails d'une sauce spécifique en utilisant l'identifiant de la sauce fourni dans les paramètres de la requête. La fonction utilise la méthode "findOne" de la classe "Sauce" pour trouver une sauce correspondant à l'identifiant fourni dans la requête. Si la sauce est trouvée, elle est renvoyée en réponse avec un statut HTTP 200. Si une erreur se produit ou si la sauce n'est pas trouvée, une réponse avec un statut HTTP 404 et une erreur est renvoyée.*/
-
+//4
 // Exporte la fonction 'getOneSauce' pour récupérer les détails d'une sauce spécifique
 exports.getOneSauce = (req, res, next) => {
     // Trouve une sauce correspondant à l'identifiant fourni dans les paramètres de la requête
@@ -162,9 +151,7 @@ exports.getOneSauce = (req, res, next) => {
         });
 };
 
-
-/*Cette fonction exportée "modifySauce" permet de modifier une sauce existante en utilisant l'identifiant de la sauce fourni dans les paramètres de la requête. Elle vérifie d'abord si l'utilisateur authentifié est le créateur de la sauce, si oui, elle va mettre à jour la sauce avec les nouvelles informations, sinon elle va renvoyer un message d'erreur "non autorisé". Si la modification a réussi, elle va renvoyer un message de succès, sinon elle va renvoyer une erreur. En cas d'erreur lors de la recherche de la sauce, elle va renvoyer une erreur.*/
-
+//5
 // Exporte la fonction 'modifySauce' pour modifier une sauce existante
 exports.modifySauce = (req, res, next) => {
     // Si une image est incluse dans la requête, ajoute l'URL de l'image à l'objet 'like'
@@ -206,9 +193,7 @@ exports.modifySauce = (req, res, next) => {
         });
 };
 
-
-/*Cette fonction permet de supprimer une sauce existante en utilisant l'identifiant de la sauce fourni dans les paramètres de la requête. Elle utilise la méthode findOne de la classe Sauce pour trouver la sauce correspondant à l'identifiant fourni dans les paramètres de la requête. Si la sauce est trouvée, elle utilise la méthode unlink de la classe fs pour supprimer le fichier image associé à la sauce. Ensuite, elle utilise la méthode deleteOne de la classe Sauce pour supprimer la sauce de la base de données. Si la suppression a réussi, elle renvoie un message de succès. Si la suppression a échoué ou si une erreur se produit lors de la recherche de la sauce, elle renvoie une erreur.*/
-
+//6
 // Exporte la fonction 'deleteSauce' pour supprimer une sauce existante
 exports.deleteSauce = (req, res, next) => {
     // Trouve une sauce correspondant à l'identifiant fourni dans les paramètres de la requête
@@ -236,8 +221,7 @@ exports.deleteSauce = (req, res, next) => {
         );
 };
 
-/*Cette fonction permet de récupérer toutes les sauces enregistrées dans la base de données. Elle utilise la méthode find() de la classe Sauce pour trouver toutes les sauces enregistrées dans la base de données. Si la recherche a réussi, elle renvoie toutes les sauces trouvées avec un statut HTTP 200. Si une erreur se produit lors de la recherche, elle renvoie une erreur avec un statut HTTP 400.*/
-
+//7
 // Exporte la fonction 'getAllSauce' pour récupérer toutes les sauces
 exports.getAllSauce = (req, res, next) => {
     // Trouve toutes les sauces dans la base de données
