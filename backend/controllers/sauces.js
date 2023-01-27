@@ -152,18 +152,7 @@ exports.getOneSauce = (req, res, next) => {
 };
 
 //5
-// Exporte la fonction 'modifySauce' pour modifier une sauce existante
 exports.modifySauce = (req, res, next) => {
-    // Si une image est incluse dans la requête, ajoute l'URL de l'image à l'objet 'modifySauce'
-    const modifySauce = req.file
-        ? {
-            ...JSON.parse(req.body.sauce),
-            imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename
-                }`,
-        }
-        : { ...req.body };
-    // Supprime l'identifiant utilisateur de l'objet 'modifySauce '
-    delete modifySauce._userId;
     // Trouve une sauce correspondant à l'identifiant fourni dans les paramètres de la requête
     Sauce.findOne({ _id: req.params.id })
         .then((sauce) => {
@@ -172,19 +161,31 @@ exports.modifySauce = (req, res, next) => {
                 // Renvoie un message d'erreur si l'utilisateur n'est pas autorisé à effectuer la modification
                 res.status(403).json({ message: "Non autorisé" });
             } else {
+                // Stock l'ancien nom de l'image
+                let oldImage = sauce.imageUrl.split("/images/")[1];
+                // Si une image est incluse dans la requête, ajoute l'URL de l'image à l'objet 'modifySauce'
+                const modifySauce = req.file
+                    ? {
+                        ...JSON.parse(req.body.sauce),
+                        imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+                    }
+                    : { ...req.body };
+                // Supprime l'identifiant utilisateur de l'objet 'modifySauce '
+                delete modifySauce._userId;
                 // Met à jour la sauce avec les nouvelles informations
-                Sauce.updateOne(
-                    { _id: req.params.id },
-                    { ...modifySauce, _id: req.params.id }
-                )
-                    .then(() =>
+                Sauce.updateOne({ _id: req.params.id }, { ...modifySauce, _id: req.params.id })
+                    .then(() => {
+                        // Supprime l'ancienne image
+                        fs.unlink(`images/${oldImage}`, (err) => {
+                            if (err) throw err;
+                        });
                         // Renvoie un message de succès si la modification a réussi
-                        res.status(200).json({ message: "Sauce modifiée !" })
-                    )
-                    .catch((error) =>
+                        res.status(200).json({ message: "Sauce modifiée !" });
+                    })
+                    .catch((error) => {
                         // Renvoie une erreur si la modification a échoué
-                        res.status(401).json({ error })
-                    );
+                        res.status(401).json({ error });
+                    });
             }
         })
         .catch((error) => {
@@ -192,6 +193,52 @@ exports.modifySauce = (req, res, next) => {
             res.status(400).json({ error });
         });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //6
 // Exporte la fonction 'deleteSauce' pour supprimer une sauce existante

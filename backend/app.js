@@ -8,9 +8,11 @@ const userSauce = require("./routes/sauces")
 // importation de la librairie 'path' pour manipuler les chemins de fichiers
 const path = require("path");
 
+require('dotenv').config();
+
 
 // Connexion à la base de données MongoDB à l'aide de Mongoose
-mongoose.connect('mongodb+srv://Adel:W8HpmjE3Ny8h2bkB@openclassrooms.pummzx7.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@openclassrooms.pummzx7.mongodb.net/?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
