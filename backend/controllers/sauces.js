@@ -7,16 +7,16 @@ const fs = require("fs");
 //2
 // Exporte la fonction 'createSauce' pour la création d'une nouvelle sauce
 exports.createSauce = (req, res, next) => {
-    // Récupère les propriétés 'like' de la sauce depuis la demande
-    const like = JSON.parse(req.body.sauce);
+    // Récupère les propriétés 'createSauce' de la sauce depuis la demande
+    const createSauce = JSON.parse(req.body.sauce);
 
-    // Supprime l'identifiant et l'identifiant de l'utilisateur de l'objet 'like'
-    delete like._id;
-    delete like._userId;
+    // Supprime l'identifiant et l'identifiant de l'utilisateur de l'objet 'createSauce'
+    delete createSauce._id;
+    delete createSauce._userId;
 
-    // Crée une nouvelle instance de 'Sauce' avec les propriétés 'like', l'identifiant de l'utilisateur et l'URL de l'image
+    // Crée une nouvelle instance de 'Sauce' avec les propriétés 'createSauce', l'identifiant de l'utilisateur et l'URL de l'image
     const sauce = new Sauce({
-        ...like,
+        ...createSauce,
         userId: req.auth.userId,
         imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
     });
@@ -154,16 +154,16 @@ exports.getOneSauce = (req, res, next) => {
 //5
 // Exporte la fonction 'modifySauce' pour modifier une sauce existante
 exports.modifySauce = (req, res, next) => {
-    // Si une image est incluse dans la requête, ajoute l'URL de l'image à l'objet 'like'
-    const like = req.file
+    // Si une image est incluse dans la requête, ajoute l'URL de l'image à l'objet 'modifySauce'
+    const modifySauce = req.file
         ? {
             ...JSON.parse(req.body.sauce),
             imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename
                 }`,
         }
         : { ...req.body };
-    // Supprime l'identifiant utilisateur de l'objet 'like'
-    delete like._userId;
+    // Supprime l'identifiant utilisateur de l'objet 'modifySauce '
+    delete modifySauce._userId;
     // Trouve une sauce correspondant à l'identifiant fourni dans les paramètres de la requête
     Sauce.findOne({ _id: req.params.id })
         .then((sauce) => {
@@ -175,7 +175,7 @@ exports.modifySauce = (req, res, next) => {
                 // Met à jour la sauce avec les nouvelles informations
                 Sauce.updateOne(
                     { _id: req.params.id },
-                    { ...like, _id: req.params.id }
+                    { ...modifySauce, _id: req.params.id }
                 )
                     .then(() =>
                         // Renvoie un message de succès si la modification a réussi

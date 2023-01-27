@@ -41,5 +41,3 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 // Exportation de l'application pour l'utiliser dans d'autres fichiers
 module.exports = app;
-
-/*Ce code utilise express pour créer un serveur web, utilise mongoose pour se connecter à une base de données MongoDB, importe les routes définies dans les fichiers ./routes/user et ./routes/sauces, utilise path pour joindre les fichier image et permet l'accès à l'API depuis n'importe quelle origine.*/
