@@ -8,9 +8,10 @@ const userSauce = require("./routes/sauces")
 // importation de la librairie 'path' pour manipuler les chemins de fichiers
 const path = require("path");
 
+//1
 require('dotenv').config();
 
-
+//2
 // Connexion à la base de données MongoDB à l'aide de Mongoose
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@openclassrooms.pummzx7.mongodb.net/?retryWrites=true&w=majority`,
     {
@@ -26,6 +27,7 @@ const app = express();
 // Utilisation de express.json() pour traiter les données envoyées en format JSON
 app.use(express.json());
 
+//3
 // Configuration des en-têtes de réponse pour permettre l'accès à l'API depuis n'importe quelle origine
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

@@ -56,7 +56,7 @@ exports.giveLikes = (req, res, next) => {
                             // Renvoie un message de succès
                             res
                                 .status(201)
-                                .json({ message: "Merci !" });
+                                .json({ message: "-1 like" });
                         })
                         .catch((error) => {
                             // Renvoie une erreur en cas d'échec
@@ -78,7 +78,7 @@ exports.giveLikes = (req, res, next) => {
                             res
                                 .status(201)
                                 .json({
-                                    message: "Pas merci !",
+                                    message: "-1 Dislike",
                                 });
                         })
                         .catch((error) => {
@@ -104,7 +104,7 @@ exports.giveLikes = (req, res, next) => {
         )
             .then(() => {
                 // Renvoie un message de succès
-                res.status(201).json({ message: "moins 1 Like !" });
+                res.status(201).json({ message: "+ 1 like !" });
             })
             .catch((error) => {
                 // Renvoie une erreur en cas d'échec
@@ -123,7 +123,7 @@ exports.giveLikes = (req, res, next) => {
         )
             .then(() => {
                 // Renvoie un message de succès
-                res.status(201).json({ message: "moins un Dislike ! " });
+                res.status(201).json({ message: "+ 1 Dislike ! " });
             })
             .catch((error) => {
                 // Renvoie une erreur en cas d'échec
@@ -193,52 +193,6 @@ exports.modifySauce = (req, res, next) => {
             res.status(400).json({ error });
         });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //6
 // Exporte la fonction 'deleteSauce' pour supprimer une sauce existante

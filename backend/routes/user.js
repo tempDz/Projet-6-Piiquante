@@ -29,8 +29,3 @@ router.post('/', auth, (req, res, next) => {
 
 // Exporte le routeur pour l'utiliser dans l'application
 module.exports = router;
-
-/*Ce fichier est le point d'entrée pour les routes de l'API d'utilisateurs. Il importe les fonctions de contrôleur d'utilisateur, le middleware d'authentification. Il utilise ces imports pour définir les routes pour les différentes opérations sur les utilisateurs (créer un compte, se connecter, créer un utilisateur).
-Il initialise un nouveau routeur express avec la ligne const router = express.Router();, puis définit les routes pour les différentes opérations sur les utilisateurs en utilisant les méthodes post de ce routeur.
-La route pour créer un utilisateur utilise également le middleware d'authentification pour s'assurer que seuls les utilisateurs authentifiés peuvent accéder aux données.
-Enfin, le dernier ligne module.exports = router; permet d'exporter le routeur pour qu'il puisse être utilisé dans l'application.*/
